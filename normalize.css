@@ -39,7 +39,7 @@ body, ul, li {
   .side-bar {
     position: fixed;
     border-radius: 20px;
-    min-height: 100vh;
+    min-height: 100%;
     width: 100px;
     background-color: black;
     transition: .5s;
@@ -62,8 +62,8 @@ body, ul, li {
   }
   .side-bar {
     position: fixed;
-    min-height: 100vh;
-    width: 100px;
+    min-height: 100%;
+    width: 60px;
     background-color: black;
     overflow: hidden;	/* 넘치는 메뉴 요소 숨기기 */
     transition: .5s;
@@ -71,11 +71,11 @@ body, ul, li {
   
   /* 마우스 인식 시 너비 확장 */
   .side-bar:hover {
-    width: 200px;
+    width: 120px;
   }
   /* 2차 메뉴 공간 제한 해제 */
 .side-bar:hover {
-    width: 200px;
+    width: 120px;
     overflow: visible;
   }
   
