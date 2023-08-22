@@ -18,7 +18,7 @@ body, ul, li {
   
   /* 사이드바의 너비와 높이를 변수를 통해 통제 */
   :root {
-    --side-bar-height: 50vh;
+    --side-bar-height: 100vh;
   }
 
   /* 2차 메뉴 숨기기 */
