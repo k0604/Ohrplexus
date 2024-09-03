@@ -139,9 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 각 세션에 해당하는 PDF 파일 경로
     const pdfFiles = {
-        1: 'tracks/비워내려고 합니다/비워내려고 합니다(Main Guitar).pdf',
-        2: 'tracks/비워내려고 합니다/비워내려고 합니다(Bass).pdf',
-        3: 'tracks/비워내려고 합니다/비워내려고 합니다(Drum).pdf'
+        1: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Main%20Guitar).pdf',
+        2: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Bass).pdf',
+        3: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Drum).pdf'
     };
 
     // 처음 로드될 때 첫 번째 세션의 PDF를 표시
