@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비워내려고 합니다 - Ohrplexus</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,6 +15,7 @@
                 <li><a href="audio-page1.html">비워내려고 합니다</a></li>
                 <li><a href="audio-page2.html">Page 2</a></li>
                 <li><a href="audio-page3.html">Page 3</a></li>
+                <!-- 필요한 만큼 페이지 추가 -->
             </ul>
         </div>
 
@@ -42,69 +42,12 @@
             </div>
 
             <!-- PDF 뷰어 -->
-            <div id="pdfViewer" style="width: 100%; height: 600px;"></div>
+            <div class="pdf-viewer">
+                <iframe id="pdfFrame" src="tracks/비워내려고%20합니다/비워내려고%20합니다(Main%20Guitar).pdf" width="100%" height="600px"></iframe>
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const pdfFiles = {
-                1: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Main%20Guitar).pdf',
-                2: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Bass).pdf',
-                3: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Drum).pdf'
-            };
-
-            function loadPDF(session) {
-                const url = pdfFiles[session];
-                const loadingTask = pdfjsLib.getDocument(url);
-                loadingTask.promise.then(function (pdf) {
-                    console.log('PDF loaded');
-
-                    pdf.getPage(1).then(function (page) {
-                        console.log('Page loaded');
-
-                        const scale = 1.5;
-                        const viewport = page.getViewport({ scale: scale });
-
-                        const canvas = document.createElement('canvas');
-                        const context = canvas.getContext('2d');
-                        canvas.height = viewport.height;
-                        canvas.width = viewport.width;
-
-                        const pdfViewer = document.getElementById('pdfViewer');
-                        pdfViewer.innerHTML = '';  // 기존 내용을 지우고 새롭게 로드
-                        pdfViewer.appendChild(canvas);
-
-                        const renderContext = {
-                            canvasContext: context,
-                            viewport: viewport
-                        };
-                        page.render(renderContext).promise.then(function () {
-                            console.log('Page rendered');
-                        });
-                    });
-                }, function (reason) {
-                    console.error(reason);
-                });
-            }
-
-            // 기본적으로 첫 번째 세션의 PDF를 로드
-            loadPDF(1);
-
-            // 탭 클릭 시 해당 세션의 PDF를 로드
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const session = this.dataset.session;
-                    loadPDF(session);
-
-                    // 활성화된 탭을 업데이트
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>

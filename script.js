@@ -133,60 +133,30 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // PDF.js를 사용한 PDF 로드 및 표시
+    // PDF 악보 표시 관련 변수
+    const pdfFrame = document.getElementById('pdfFrame');
+    const tabButtons = document.querySelectorAll('.tab-button');
+
+    // 각 세션에 해당하는 PDF 파일 경로
     const pdfFiles = {
-        1: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Main%20Guitar).pdf',
-        2: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Bass).pdf',
-        3: 'tracks/비워내려고%20합니다/비워내려고%20합니다(Drum).pdf'
+        1: 'tracks/비워내려고 합니다/비워내려고 합니다(Main Guitar).pdf',
+        2: 'tracks/비워내려고 합니다/비워내려고 합니다(Bass).pdf',
+        3: 'tracks/비워내려고 합니다/비워내려고 합니다(Drum).pdf'
     };
 
-    function loadPDF(session) {
-        const url = pdfFiles[session];
-        const loadingTask = pdfjsLib.getDocument(url);
-        loadingTask.promise.then(function (pdf) {
-            console.log('PDF loaded');
+    // 처음 로드될 때 첫 번째 세션의 PDF를 표시
+    pdfFrame.src = pdfFiles[1];
+    tabButtons[0].classList.add('active');
 
-            pdf.getPage(1).then(function (page) {
-                console.log('Page loaded');
-
-                const scale = 1.5;
-                const viewport = page.getViewport({ scale: scale });
-
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const pdfViewer = document.getElementById('pdfViewer');
-                pdfViewer.innerHTML = '';  // 기존 내용을 지우고 새롭게 로드
-                pdfViewer.appendChild(canvas);
-
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext).promise.then(function () {
-                    console.log('Page rendered');
-                });
-            });
-        }, function (reason) {
-            console.error(reason);
-        });
-    }
-
-    // 기본적으로 첫 번째 세션의 PDF를 로드
-    loadPDF(1);
-
-    // 탭 클릭 시 해당 세션의 PDF를 로드
-    const tabButtons = document.querySelectorAll('.tab-button');
     tabButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const session = this.dataset.session;
-            loadPDF(session);
-
+        button.addEventListener('click', function() {
             // 활성화된 탭을 업데이트
             tabButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
+
+            // 해당 세션의 PDF 파일을 iframe에 로드
+            const session = this.dataset.session;
+            pdfFrame.src = pdfFiles[session];
         });
     });
 });
