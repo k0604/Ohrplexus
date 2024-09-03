@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비워내려고 합니다 - Ohrplexus</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h2><a href="index.html" style="color: white; text-decoration: none;">Ohrplexus</a></h2>
+            <ul class="nav-links">
+                <li><a href="audio-page1.html">비워내려고 합니다</a></li>
+                <li><a href="audio-page2.html">Page 2</a></li>
+                <li><a href="audio-page3.html">Page 3</a></li>
+                <!-- 필요한 만큼 페이지 추가 -->
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1>비워내려고 합니다</h1>
+
+            <!-- 오디오 재생 및 악보 인터페이스 -->
+            <div id="audioControls">
+                <button id="playButton">재생</button>
+                <button id="pauseButton">일시정지</button>
+                <input type="range" id="seekBar" min="0" max="100" value="0">
+                <div>
+                    <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+                </div>
+            </div>
+
+            <div id="trackControls"></div>
+
+            <div class="tabs">
+                <button class="tab-button" data-session="1">Main Guitar</button>
+                <button class="tab-button" data-session="2">Bass</button>
+                <button class="tab-button" data-session="3">Drum</button>
+            </div>
+
+            <div class="pdf-viewer">
+                <iframe id="pdfFrame" src="" width="100%" height="600px"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
