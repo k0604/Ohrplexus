@@ -9,13 +9,10 @@
 <body>
     <div class="container">
         <!-- 사이드바 -->
-        <div class="sidebar">
+        <div id="sidebar" class="sidebar">
             <h2>Ohrplexus</h2>
-            <ul class="nav-links">
-                <li><a href="audio-page1.html">비워내려고 합니다</a></li>
-                <li><a href="audio-page2.html">Page 2</a></li>
-                <li><a href="audio-page3.html">Page 3</a></li>
-                <!-- 필요한 만큼 페이지 추가 -->
+            <ul id="navLinks" class="nav-links">
+                <!-- 여기에서 링크가 동적으로 삽입됩니다 -->
             </ul>
         </div>
 
@@ -38,5 +35,26 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        // 페이지 링크 데이터
+        const pages = [
+            { name: "비워내려고 합니다-김수영", url: "audio-page1.html" },
+            { name: "비틀비틀-김수영", url: "audio-page2.html" },
+            { name: "우리만은-최유리", url: "audio-page3.html" }
+            // 추가 페이지는 여기서 계속 추가
+        ];
+
+        // 사이드바 링크를 동적으로 생성
+        const navLinks = document.getElementById('navLinks');
+        pages.forEach(page => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = page.url;
+            a.textContent = page.name;
+            li.appendChild(a);
+            navLinks.appendChild(li);
+        });
+    </script>
 </body>
 </html>
