@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: "비워내려고 합니다-김수영", url: "audio-page1.html" },
         { name: "비틀비틀-김수영", url: "audio-page2.html" },
         { name: "우리만은-최유리", url: "audio-page3.html" },
-        { name: "Letter-유다빈밴드", url: "audio-page4.html" },
+        { name: "홀로-정키", url: "audio-page4.html" },
         // 추가 페이지는 여기서 계속 추가
     ];
 
