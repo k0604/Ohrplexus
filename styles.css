@@ -11,29 +11,36 @@ body {
 }
 
 .sidebar {
-    width: 250px;
+    width: 300px;
     background-color: #333;
     color: #fff;
     padding: 20px;
 }
 
-.sidebar h2 {
-    text-align: center;
-}
-
 .nav-links {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .nav-links li {
-    margin: 15px 0;
+    margin-bottom: 10px; /* 각 항목 사이의 간격 */
+    list-style-type: none;
 }
 
 .nav-links a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-size: 18px;
+    display: block; /* 줄바꿈 허용 */
+    line-height: 1.5;
+    padding: 10px 0; /* 여백 추가 */
+    white-space: nowrap; /* 텍스트가 한 줄로만 나옴 */
+}
+
+.nav-links a small {
+    font-size: 14px; /* 가수 이름의 작은 글씨 */
+    color: #aaa;
 }
 
 .nav-links a:hover {
@@ -43,6 +50,8 @@ body {
 .main-content {
     flex-grow: 1;
     padding: 40px;
+    margin-left: 20px; /* 사이드바 너비와 맞춤 */
+    transition: margin-left 0.3s ease;
 }
 
 .main-content h1 {
@@ -72,16 +81,18 @@ body {
 /* 오디오 재생 및 악보 스타일 추가 */
 #audioControls {
     margin-bottom: 20px;
+    text-align: left; /* 왼쪽 정렬 */
 }
 
 #trackControls {
     margin-bottom: 20px;
+    text-align: left; /* 왼쪽 정렬 */
 }
 
 .track-control {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* 왼쪽 정렬 */
     margin-bottom: 10px;
 }
 
@@ -94,7 +105,7 @@ body {
 
 .track-control input[type="range"] {
     flex-grow: 1;
-    max-width: 300px;
+    max-width: 150px; /* 조절바의 길이를 오디오 플레이 길이와 맞춤 */
 }
 
 .tabs {
@@ -121,4 +132,56 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     background-color: #fff;
+}
+
+/* 반응형 사이드바 관련 스타일 추가 */
+.sidebar h2 {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
+.sidebar-icon {
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    display: none; /* 기본적으로 숨김 */
+    text-align: center;
+}
+
+.sidebar.expanded .sidebar-icon {
+    display: block; /* 확장 시 아이콘 표시 */
+}
+
+.sidebar.expanded h2 {
+    display: block;
+}
+
+.sidebar.collapsed h2 {
+    display: none; /* 축소 상태에서 텍스트 숨김 */
+}
+
+.sidebar.collapsed .nav-links {
+    display: none; /* 축소 상태에서 링크 숨김 */
+}
+
+.sidebar.expanded .nav-links {
+    display: block;
+}
+
+.sidebar.collapsed {
+    width: 60px; /* 축소된 사이드바의 너비 */
+}
+
+.sidebar.expanded {
+    width: 300px; /* 확장된 사이드바의 너비 */
+}
+
+/* 메인 콘텐츠가 사이드바 크기에 맞춰 자동으로 조정되도록 설정 */
+.sidebar.expanded ~ .main-content {
+    margin-left: 300px; /* 확장 시 */
+}
+
+.sidebar.collapsed ~ .main-content {
+    margin-left: 60px; /* 축소 시 */
 }

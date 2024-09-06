@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // 추가 페이지는 여기서 계속 추가
     ];
 
+    // 페이지 이름을 기준으로 정렬
+    pages.sort((a, b) => a.name.localeCompare(b.name));
+
     const sidebar = document.getElementById('sidebar');
     sidebar.innerHTML = `
         <h2><a href="index.html" style="color: white; text-decoration: none;">Ohrplexus</a></h2>
@@ -19,9 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.getElementById('navLinks');
     pages.forEach(page => {
         const li = document.createElement('li');
+        
+        // 하이픈을 기준으로 곡명과 가수 이름을 분리
+        const [songName, artistName] = page.name.split('-');
         const a = document.createElement('a');
         a.href = page.url;
-        a.textContent = page.name;
+        
+        // 곡명과 가수 이름을 HTML로 생성
+        a.innerHTML = `
+            <div>
+                <span>${songName}</span><br>
+                <small style="font-size: 14px; color: #aaa;">${artistName}</small>
+            </div>
+        `;
+        
         li.appendChild(a);
         navLinks.appendChild(li);
     });
